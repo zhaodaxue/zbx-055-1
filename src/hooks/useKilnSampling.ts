@@ -11,6 +11,7 @@ export function useKilnSampling() {
     targetCurve,
     isSampling,
     samplingStartTime,
+    readings,
     addReading,
     setAnomalies,
     setError,
@@ -29,9 +30,13 @@ export function useKilnSampling() {
       return;
     }
 
+    if (readings.length > 0 && tickRef.current === 0) {
+      const lastMinute = readings[readings.length - 1].minute;
+      tickRef.current = Math.ceil((lastMinute * 60) / 30);
+    }
+
     if (!samplingStartTime) {
       setSamplingStartTime(Date.now());
-      tickRef.current = 0;
     }
 
     intervalRef.current = setInterval(async () => {
@@ -74,6 +79,7 @@ export function useKilnSampling() {
     isSampling,
     targetCurve,
     samplingStartTime,
+    readings.length,
     addReading,
     setAnomalies,
     setError,

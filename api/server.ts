@@ -1,5 +1,5 @@
 /**
- * local server entry file, for local development
+ * local server entry file, for local development & production
  */
 import app from './app.js';
 import express from 'express';
@@ -13,8 +13,8 @@ const __dirname = path.dirname(__filename);
 const isProd = process.env.NODE_ENV === 'production';
 const distDir = path.resolve(__dirname, '../dist');
 
-if (isProd && fs.existsSync(distDir)) {
-  app.use(express.static(distDir));
+if (isProd && fs.existsSync(path.join(distDir, 'index.html'))) {
+  app.use(express.static(distDir, { index: false }));
   app.get(/^(?!\/api).*/, (_req, res) => {
     res.sendFile(path.join(distDir, 'index.html'));
   });
@@ -29,9 +29,6 @@ const server = app.listen(PORT, () => {
   }
 });
 
-/**
- * close server
- */
 process.on('SIGTERM', () => {
   console.log('SIGTERM signal received');
   server.close(() => {

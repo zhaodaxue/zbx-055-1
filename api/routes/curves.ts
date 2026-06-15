@@ -46,15 +46,24 @@ router.get('/:id', async (req: Request, res: Response) => {
     if (isNaN(id)) {
       return res.status(400).json({ success: false, error: '无效的曲线ID' });
     }
+    if (!Number.isInteger(id) || id <= 0) {
+      return res.status(400).json({ success: false, error: '无效的曲线ID' });
+    }
     const db = await getDb();
     const repo = new CurveRepository(db);
-    const curve = repo.findById(id);
+    let curve: ReturnType<typeof repo.findById>;
+    try {
+      curve = repo.findById(id);
+    } catch {
+      curve = null;
+    }
     if (!curve) {
       return res.status(404).json({ success: false, error: '曲线不存在' });
     }
     res.json({ success: true, data: curve });
-  } catch {
-    res.status(500).json({ success: false, error: '查询曲线失败' });
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : '查询曲线失败';
+    res.status(500).json({ success: false, error: msg });
   }
 });
 

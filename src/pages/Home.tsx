@@ -18,7 +18,11 @@ export default function Home() {
     setReadings,
     setAnomalies,
     setError,
+    setSampling,
+    setSamplingStartTime,
     error,
+    targetCurve,
+    readings,
   } = useKilnStore();
 
   useKilnSampling();
@@ -29,16 +33,25 @@ export default function Home() {
         const curve = await fetchLatestCurve();
         if (curve) {
           setTargetCurve(curve);
-          const readings = await fetchReadings(curve.id);
-          setReadings(readings);
+          const data = await fetchReadings(curve.id);
+          setReadings(data);
           const anomalies = await fetchAnomalies(curve.id);
           setAnomalies(anomalies);
+          if (data.length > 0) {
+            const last = data[data.length - 1];
+            const now = Date.now();
+            const lastReadTime = new Date(last.timestamp).getTime();
+            if (now - lastReadTime < 10 * 60 * 1000) {
+              setSamplingStartTime(now - Math.floor(last.minute * 60 * 1000));
+              setSampling(true);
+            }
+          }
         }
       } catch (err) {
         setError(err instanceof Error ? err.message : '加载失败');
       }
     })();
-  }, [setTargetCurve, setReadings, setAnomalies, setError]);
+  }, [setTargetCurve, setReadings, setAnomalies, setError, setSampling, setSamplingStartTime]);
 
   return (
     <div className="min-h-screen bg-[#1a1410] text-white flex flex-col">

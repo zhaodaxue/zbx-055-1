@@ -43,7 +43,8 @@ export async function getDb(): Promise<Database> {
       minute REAL NOT NULL,
       temperature REAL NOT NULL,
       timestamp TEXT NOT NULL DEFAULT (datetime('now')),
-      FOREIGN KEY (curve_id) REFERENCES target_curve(id) ON DELETE CASCADE
+      FOREIGN KEY (curve_id) REFERENCES target_curve(id) ON DELETE CASCADE,
+      UNIQUE(curve_id, minute) ON CONFLICT REPLACE
     )
   `);
 

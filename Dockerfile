@@ -15,4 +15,4 @@ ENV PORT=3001
 
 EXPOSE 3001
 
-CMD ["node", "--import", "tsx", "api/index.ts"]
+CMD ["node", "--import", "tsx", "api/server.ts"]

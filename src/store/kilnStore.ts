@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 import type {
   AnomalySegment,
   CurvePoint,
@@ -13,6 +14,7 @@ interface KilnState {
   isSampling: boolean;
   samplingStartTime: number | null;
   error: string | null;
+  persistedCurveId: number | null;
 
   setTargetCurve: (curve: TargetCurve | null) => void;
   setReadings: (readings: TemperatureReading[]) => void;
@@ -24,31 +26,46 @@ interface KilnState {
   resetAll: () => void;
 }
 
-export const useKilnStore = create<KilnState>((set) => ({
-  targetCurve: null,
-  readings: [],
-  anomalies: [],
-  isSampling: false,
-  samplingStartTime: null,
-  error: null,
-
-  setTargetCurve: (curve) => set({ targetCurve: curve }),
-  setReadings: (readings) => set({ readings }),
-  addReading: (reading) =>
-    set((s) => ({ readings: [...s.readings, reading] })),
-  setAnomalies: (anomalies) => set({ anomalies }),
-  setSampling: (active) => set({ isSampling: active }),
-  setSamplingStartTime: (t) => set({ samplingStartTime: t }),
-  setError: (err) => set({ error: err }),
-  resetAll: () =>
-    set({
+export const useKilnStore = create<KilnState>()(
+  persist(
+    (set) => ({
+      targetCurve: null,
       readings: [],
       anomalies: [],
       isSampling: false,
       samplingStartTime: null,
       error: null,
+      persistedCurveId: null,
+
+      setTargetCurve: (curve) =>
+        set({ targetCurve: curve, persistedCurveId: curve?.id ?? null }),
+      setReadings: (readings) => set({ readings }),
+      addReading: (reading) =>
+        set((s) => ({ readings: [...s.readings, reading] })),
+      setAnomalies: (anomalies) => set({ anomalies }),
+      setSampling: (active) => set({ isSampling: active }),
+      setSamplingStartTime: (t) => set({ samplingStartTime: t }),
+      setError: (err) => set({ error: err }),
+      resetAll: () =>
+        set({
+          readings: [],
+          anomalies: [],
+          isSampling: false,
+          samplingStartTime: null,
+          error: null,
+        }),
     }),
-}));
+    {
+      name: 'kiln-store',
+      partialize: (state) => ({
+        targetCurve: state.targetCurve,
+        isSampling: state.isSampling,
+        samplingStartTime: state.samplingStartTime,
+        persistedCurveId: state.persistedCurveId,
+      }),
+    }
+  )
+);
 
 export async function postCurve(points: CurvePoint[]): Promise<TargetCurve> {
   const res = await fetch('/api/curves', {
@@ -65,6 +82,13 @@ export async function fetchLatestCurve(): Promise<TargetCurve | null> {
   const res = await fetch('/api/curves/latest');
   const json = await res.json();
   return json.success ? (json.data as TargetCurve | null) : null;
+}
+
+export async function fetchCurveById(id: number): Promise<TargetCurve | null> {
+  const res = await fetch(`/api/curves/${id}`);
+  const json = await res.json();
+  if (!json.success) return null;
+  return json.data as TargetCurve | null;
 }
 
 export async function postReading(

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Plus, Trash2, Send, RotateCcw } from 'lucide-react';
 import type { CurvePoint } from '../types';
 import {
@@ -19,6 +19,14 @@ export function CurveInputTable() {
     useKilnStore();
   const [points, setPoints] = useState<CurvePoint[]>(DEFAULT_POINTS);
   const [submitting, setSubmitting] = useState(false);
+  const [syncedCurveId, setSyncedCurveId] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (targetCurve && targetCurve.id !== syncedCurveId && !isSampling) {
+      setPoints(targetCurve.points);
+      setSyncedCurveId(targetCurve.id);
+    }
+  }, [targetCurve, syncedCurveId, isSampling]);
 
   const updatePoint = (idx: number, field: 'minute' | 'temperature', value: string) => {
     setPoints((prev) => {
@@ -50,6 +58,7 @@ export function CurveInputTable() {
       setTargetCurve(curve);
       resetAll();
       setSampling(true);
+      setSyncedCurveId(curve.id);
     } catch (err) {
       setError(err instanceof Error ? err.message : '提交失败');
     } finally {
@@ -98,7 +107,7 @@ export function CurveInputTable() {
                   <input
                     type="number"
                     min="0"
-                    step="1"
+                    step="0.5"
                     value={p.minute}
                     onChange={(e) => updatePoint(idx, 'minute', e.target.value)}
                     disabled={isSampling}

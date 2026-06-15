@@ -1,33 +1,17 @@
-/**
- * This is a user authentication API route demo.
- * Handle user registration, login, token management, etc.
- */
-import { Router, type Request, type Response } from 'express'
+import { Router, type Request, type Response } from 'express';
 
-const router = Router()
+const router = Router();
 
-/**
- * User Login
- * POST /api/auth/register
- */
-router.post('/register', async (req: Request, res: Response): Promise<void> => {
-  // TODO: Implement register logic
-})
+function notEnabled(_req: Request, res: Response): void {
+  if (!res.headersSent) {
+    res.status(501).json({ success: false, error: '认证功能未启用' });
+  }
+}
 
-/**
- * User Login
- * POST /api/auth/login
- */
-router.post('/login', async (req: Request, res: Response): Promise<void> => {
-  // TODO: Implement login logic
-})
+router.post('/register', notEnabled);
+router.post('/login', notEnabled);
+router.post('/logout', notEnabled);
+router.get('/me', notEnabled);
+router.all('*', notEnabled);
 
-/**
- * User Logout
- * POST /api/auth/logout
- */
-router.post('/logout', async (req: Request, res: Response): Promise<void> => {
-  // TODO: Implement logout logic
-})
-
-export default router
+export default router;

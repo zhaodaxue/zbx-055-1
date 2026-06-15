@@ -15,17 +15,35 @@ router.post('/', async (req: Request, res: Response) => {
     };
     if (
       typeof curveId !== 'number' ||
+      isNaN(curveId) ||
       typeof minute !== 'number' ||
-      typeof temperature !== 'number'
+      isNaN(minute) ||
+      typeof temperature !== 'number' ||
+      isNaN(temperature)
     ) {
-      return res.status(400).json({ success: false, error: '参数不完整' });
+      return res.status(400).json({ success: false, error: '参数不完整或格式错误' });
+    }
+    if (minute < 0) {
+      return res.status(400).json({ success: false, error: '分钟数不能为负数' });
+    }
+    if (temperature < -273 || temperature > 3000) {
+      return res.status(400).json({ success: false, error: '温度值超出合理范围' });
     }
     const db = await getDb();
+    const curveRepo = new CurveRepository(db);
+    if (!curveRepo.findById(curveId)) {
+      return res.status(404).json({ success: false, error: 'curveId 对应的曲线不存在' });
+    }
     const repo = new ReadingRepository(db);
     const reading = repo.create(curveId, minute, temperature);
     res.json({ success: true, data: reading });
-  } catch {
-    res.status(500).json({ success: false, error: '上报温度失败' });
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : '上报温度失败';
+    if (msg.includes('不存在')) {
+      res.status(404).json({ success: false, error: msg });
+    } else {
+      res.status(500).json({ success: false, error: msg });
+    }
   }
 });
 
