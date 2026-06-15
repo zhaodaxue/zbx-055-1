@@ -25,3 +25,9 @@ dist-ssr
 *.sln
 *.sw?
 .vite
+
+# Test
+coverage
+
+# TypeScript
+*.tsbuildinfo
