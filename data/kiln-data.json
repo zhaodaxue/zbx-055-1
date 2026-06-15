@@ -1,0 +1,283 @@
+{
+  "targetCurves": [],
+  "actualReadings": [
+    {
+      "id": "mqeudxdkdioe9z",
+      "timestamp": 1781505515576,
+      "minute": 0,
+      "temperature": 33.8
+    },
+    {
+      "id": "mqeuekivf6iypy",
+      "timestamp": 1781505545575,
+      "minute": 0,
+      "temperature": 16.4
+    },
+    {
+      "id": "mqeuf7omac00iz",
+      "timestamp": 1781505575590,
+      "minute": 0,
+      "temperature": 38.2
+    },
+    {
+      "id": "mqeufuu1vw3ed7",
+      "timestamp": 1781505605593,
+      "minute": 0,
+      "temperature": 24.2
+    },
+    {
+      "id": "mqeughzsul9nir",
+      "timestamp": 1781505635608,
+      "minute": 0,
+      "temperature": 38.1
+    },
+    {
+      "id": "mqeuh554olq3a2",
+      "timestamp": 1781505665608,
+      "minute": 0,
+      "temperature": 25.4
+    },
+    {
+      "id": "mqeuhsah1n66iv",
+      "timestamp": 1781505695609,
+      "minute": 0,
+      "temperature": 26.6
+    },
+    {
+      "id": "mqeuiffvb3ecom",
+      "timestamp": 1781505725611,
+      "minute": 0,
+      "temperature": 13
+    },
+    {
+      "id": "mqeuj2lmve0fei",
+      "timestamp": 1781505755626,
+      "minute": 0,
+      "temperature": 31.6
+    },
+    {
+      "id": "mqeujpqyiksyid",
+      "timestamp": 1781505785626,
+      "minute": 0,
+      "temperature": 35.7
+    },
+    {
+      "id": "mqeukcwbo42jbb",
+      "timestamp": 1781505815627,
+      "minute": 0,
+      "temperature": 10.8
+    },
+    {
+      "id": "mqeul021phmkpv",
+      "timestamp": 1781505845641,
+      "minute": 0,
+      "temperature": 36.5
+    },
+    {
+      "id": "mqeuln7eshb8q5",
+      "timestamp": 1781505875642,
+      "minute": 0,
+      "temperature": 25.3
+    },
+    {
+      "id": "mqeumacssz9fgs",
+      "timestamp": 1781505905644,
+      "minute": 0,
+      "temperature": 25.7
+    },
+    {
+      "id": "mqeumxij8zneb3",
+      "timestamp": 1781505935659,
+      "minute": 0,
+      "temperature": 37.2
+    },
+    {
+      "id": "mqeunknyj4zxzl",
+      "timestamp": 1781505965662,
+      "minute": 0,
+      "temperature": 39.4
+    },
+    {
+      "id": "mqeuo7tn593bln",
+      "timestamp": 1781505995675,
+      "minute": 0,
+      "temperature": 30.3
+    },
+    {
+      "id": "mqeuouz0kbjhiw",
+      "timestamp": 1781506025676,
+      "minute": 0,
+      "temperature": 31.6
+    },
+    {
+      "id": "mqeupi4d0zkb09",
+      "timestamp": 1781506055677,
+      "minute": 0,
+      "temperature": 26.4
+    },
+    {
+      "id": "mqeuq59pvgicow",
+      "timestamp": 1781506085677,
+      "minute": 0,
+      "temperature": 25.2
+    },
+    {
+      "id": "mqeuqsfgklrjm5",
+      "timestamp": 1781506115692,
+      "minute": 0,
+      "temperature": 25.6
+    },
+    {
+      "id": "mqeurfks8piirb",
+      "timestamp": 1781506145692,
+      "minute": 0,
+      "temperature": 32.6
+    },
+    {
+      "id": "mqeus2qjf08lqb",
+      "timestamp": 1781506175707,
+      "minute": 0,
+      "temperature": 22.3
+    },
+    {
+      "id": "mqeuspwcn0818h",
+      "timestamp": 1781506205724,
+      "minute": 0,
+      "temperature": 16.5
+    },
+    {
+      "id": "mqeutd2398pifw",
+      "timestamp": 1781506235739,
+      "minute": 0,
+      "temperature": 22.8
+    },
+    {
+      "id": "mqeuu07i4454j4",
+      "timestamp": 1781506265742,
+      "minute": 0,
+      "temperature": 31
+    },
+    {
+      "id": "mqeuuncve46j3s",
+      "timestamp": 1781506295743,
+      "minute": 0,
+      "temperature": 12.1
+    },
+    {
+      "id": "mqeuvailvssx45",
+      "timestamp": 1781506325757,
+      "minute": 0,
+      "temperature": 12.9
+    },
+    {
+      "id": "mqeuvxnzm7sd00",
+      "timestamp": 1781506355759,
+      "minute": 0,
+      "temperature": 35.8
+    },
+    {
+      "id": "mqeuwktsxfcsqz",
+      "timestamp": 1781506385776,
+      "minute": 0,
+      "temperature": 30
+    },
+    {
+      "id": "mqeux7z4nocu8f",
+      "timestamp": 1781506415776,
+      "minute": 0,
+      "temperature": 35.8
+    },
+    {
+      "id": "mqeuxv4vh9r17j",
+      "timestamp": 1781506445791,
+      "minute": 0,
+      "temperature": 33.5
+    },
+    {
+      "id": "mqeuyia895fbat",
+      "timestamp": 1781506475792,
+      "minute": 0,
+      "temperature": 36.6
+    },
+    {
+      "id": "mqeuz5g0s4f8xu",
+      "timestamp": 1781506505808,
+      "minute": 0,
+      "temperature": 33
+    },
+    {
+      "id": "mqeuzslbi357pn",
+      "timestamp": 1781506535807,
+      "minute": 0,
+      "temperature": 34.8
+    },
+    {
+      "id": "mqev0fqpy9j285",
+      "timestamp": 1781506565809,
+      "minute": 0,
+      "temperature": 33.2
+    },
+    {
+      "id": "mqev12wgamza17",
+      "timestamp": 1781506595824,
+      "minute": 0,
+      "temperature": 29.1
+    },
+    {
+      "id": "mqev1q1yynl5w0",
+      "timestamp": 1781506625830,
+      "minute": 0,
+      "temperature": 39.1
+    },
+    {
+      "id": "mqev2d7lqwipaj",
+      "timestamp": 1781506655841,
+      "minute": 0,
+      "temperature": 30.4
+    },
+    {
+      "id": "mqev30cy10pl70",
+      "timestamp": 1781506685841,
+      "minute": 0,
+      "temperature": 12.2
+    },
+    {
+      "id": "mqev3nibzjqxuz",
+      "timestamp": 1781506715843,
+      "minute": 0,
+      "temperature": 38
+    },
+    {
+      "id": "mqev4anomz00y5",
+      "timestamp": 1781506745844,
+      "minute": 0,
+      "temperature": 14.1
+    },
+    {
+      "id": "mqev4xtfjuhb0i",
+      "timestamp": 1781506775859,
+      "minute": 0,
+      "temperature": 13.6
+    },
+    {
+      "id": "mqev5kz66ihmb0",
+      "timestamp": 1781506805874,
+      "minute": 0,
+      "temperature": 13
+    },
+    {
+      "id": "mqev684k1xpw2f",
+      "timestamp": 1781506835876,
+      "minute": 0,
+      "temperature": 37.6
+    },
+    {
+      "id": "mqev6v9w4zip8q",
+      "timestamp": 1781506865876,
+      "minute": 0,
+      "temperature": 10.6
+    }
+  ],
+  "deviationSegments": [],
+  "currentCurveId": null
+}

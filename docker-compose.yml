@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  kiln-monitor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: kiln-reduction-monitor
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+    restart: unless-stopped
